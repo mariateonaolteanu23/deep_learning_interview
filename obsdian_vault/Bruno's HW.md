@@ -28,6 +28,28 @@ Question $\hspace{0pt}4$ for each chapter
 [[Deep-learning_interview_questions.pdf#page=30&annotation=6223R|PRB-7    CH.PRB- 2.4. True or False:  In machine learning terminology, unsupervised learning refers to the mapping of input covariates to a target response variable that is attempted at being predicted when the labels are known]]
 
 nope, in unsupervised learning we try to identify patterns, groups or features in the data without any labels, we can also have dimensionality reduction as a form of unsupervised learning.
+
+![[Deep-learning_interview_questions.pdf#page=34&rect=40,111,498,225&color=important|Deep-learning_interview_questions, p.34]]
+![[Deep-learning_interview_questions.pdf#page=35&rect=37,68,497,610&color=important|Deep-learning_interview_questions, p.35]]
+
+for a bernouli distribution we have $P(X=1)= p$, so I assume we can just replace the values here
+$$
+p_{i} = \frac{e^{-6+0.05x_{1}+x_{2}}}{1+e^{-6+0.05x_{1}+x_{2}}} =  \frac{0.606530660}{1+0.606530660} = 0.377540669
+$$
+for the second part we need to derive $x_{1}$ for the case where $p_{i}=0.5$
+
+$$
+\begin{align}
+p_{i} (1+\exp(-6+0.05x_{1}+x_{2}))  & = \exp(-6+0.05x_{1}+x_{2})  \\
+p_{i}  & = \exp(-6+0.05x_{1}+x_{2}) (1-p_{i}) \\
+\frac{p_{i}}{1-p_{i}}  & = \exp(-6+0.05x_{1}+x_{2}) \\
+\ln  \frac{p_{i}}{1-p_{i}}  &= -6 + 0.05x_{1}+x_{2} \\
+ x_{1}  & = 6+ \ln  \frac{p_{i}}{1-p_{i}} - x_{2}
+\end{align}
+$$
+
+
+
 ### Chapter 3
 ![[Pasted image 20250110112859.png]]
 [[Deep-learning_interview_questions.pdf#page=60&annotation=6226R|PRB-33    CH.PRB- 3.4. Find the probability mass function (PMF) of the following random variable: X  ∼  Binomial(n, p)  (3.2)]]
@@ -61,7 +83,21 @@ $$
 - $P(A)$ - prior probability
 - $P(B)$ - Marginal
 
-![[Interview Prep DL 2025-01-20 14.35.58.excalidraw|300]]
+![[Bruno's HW 2025-01-27 11.28.57.excalidraw]]
+
+![[Deep-learning_interview_questions.pdf#page=62&rect=43,354,498,412&color=important|Deep-learning_interview_questions, p.62]]
+
+$$
+p(y|x) = \frac{p(x|y) p(y)}{p(x)}
+$$
+where:
+- $p(y|x)$ is the posterior
+- $p(x|y)$ is the likelihood
+- $p(y)$ is the prior 
+- and $p(x)$ is the evidence or marginal likelihood and often we marginalize over it
+$$
+p(x) = \sum_{y} p(x|y) p(y)
+$$
 
 
 
@@ -87,6 +123,24 @@ $$
 It's a measure of information, and it's the amount of information needed to resolve a binary problem, such as a Bernoulli with $p=0.5$, where we need only one bit of information since there's a 50% chance of each outcome.
 
 these are used to quantify the information gained by reducing entropy.
+
+![[Deep-learning_interview_questions.pdf#page=108&rect=42,72,499,251&color=important|Deep-learning_interview_questions, p.108]]
+
+we'll if we're using entropy as the metric for uncertainty, and we're using the of a uniform distribution where $p(X=k)= 1/k$, and we're increasing or decreasing the probability by adding more outcomes, then we get:
+$$
+\mathcal{H} = -\sum_{a=1}^{N} P_{a} \log_{2} P_{a} = - \sum_{a=1}^{K} \frac{1}{K} \log  \frac{1}{K} = -\log  \frac{1}{K} = \log  (K)
+$$
+okay this wasn't a good example because this is just a straight line.
+Let's do a bernoulli with $p(X=1)= \theta$ instead.
+$$
+\mathcal{H} = - \sum_{a=1}^{N} P_{a} \log_{2} P_{a} = - (\theta \log _{2}\theta + (1-\theta) \log_{2}(1-\theta)) 
+$$
+![[Pasted image 20250127115652.png|400]]
+
+The curve is symmetrical
+
+![[Deep-learning_interview_questions.pdf#page=109&rect=38,554,496,607&color=important|Deep-learning_interview_questions, p.109]]
+The curve rises to a maximum when the probabilities are equal.
 
 ### Chapter 5
 ![[Deep-learning_interview_questions.pdf#page=144&rect=44,166,490,408&color=yellow]]
@@ -115,6 +169,15 @@ $$
 \log(h+x) = \log(h)+ \frac{1}{h \ln (10)} x- \frac{1}{h^{2}\ln (10)} \frac{x^{2}}{2} + \frac{2}{h^{3}\ln 10} \frac{x^{3}}{6} - \dots
 $$
 
+![[Deep-learning_interview_questions.pdf#page=147&rect=43,293,500,474&color=important|Deep-learning_interview_questions, p.147]]
+
+$$
+\begin{align}
+1. &  \lim_{ x \to 3 } \frac{e^{x^{3}}-e^{27}}{3x-9} \to \text{l'hopital} \to \lim_{ x \to 3 } \frac{3x^{2} e^{x^{3}}}{3} = 9e^{27} \\
+2. &  \lim_{ x \to 0 } \frac{e^{x^{2}}-x-1}{3\cos x -x-3} \implies \lim_{ x \to 0 } \frac{2xe^{x^{2}}-1}{-3 \sin x - 1}=1 \\
+3.  & \lim_{ x \to \infty } \frac{x-\ln x}{\sqrt[100]{x} +4} \implies \lim_{ x \to \infty } \frac{1-1/x}{\frac{1}{100}x^{-99/100}} = \frac{x - 1}{x} 100 x^{99/100} = \infty
+\end{align}
+$$
 
 
 ### Chapter 6
@@ -145,10 +208,41 @@ wtf, not even resnet?
 13. softmax
 14. dropout is not being used
 
+![[Deep-learning_interview_questions.pdf#page=208&rect=42,62,498,105&color=important|Deep-learning_interview_questions, p.208]]
+![[Deep-learning_interview_questions.pdf#page=209&rect=54,442,506,601&color=important|Deep-learning_interview_questions, p.209]]
+
+1. True
+2. True?
+3. False, bootstraping is when we train using various random subsets sampled with replacement
+4. True
 ### Chapter 7
 ![[Deep-learning_interview_questions.pdf#page=224&rect=47,276,492,342&color=yellow]]
 
 Yes, because in the latter layers you might find more useful features than in the earlier ones, so these are the ones most useful for further training.
+
+![[Deep-learning_interview_questions.pdf#page=228&rect=44,101,506,485&color=important|Deep-learning_interview_questions, p.228]]
+![[Deep-learning_interview_questions.pdf#page=369&rect=119,437,424,603&color=important|Deep-learning_interview_questions, p.369]]
+okay so to do this we need to exclude the last two layers because we want to stop at the last convolutional block.
+
+```python
+class ResNetBottom(torch.nn.Module):
+    def __init__(self, original_model):
+        super(ResNetBottom, self).__init__()
+        # Extract layers up to the last two (conv4_x)
+        self.features = torch.nn.Sequential(
+            *list(original_model.children())[:-2]
+        )
+
+    def forward(self, x):
+        # Pass the input through the extracted feature layers
+        x = self.features(x)
+        # Apply global average pooling to get a 512-dimensional feature vector
+        x = torch.nn.functional.adaptive_avg_pool2d(x, (1, 1))
+        # flatten vector into 2d where each row represents a feature vector
+        x = x.view(x.size(0), -1)
+        return x
+```
+
 ### Chapter 8
 ![[Deep-learning_interview_questions.pdf#page=249&rect=48,104,490,194&color=yellow]]
 
@@ -159,8 +253,19 @@ True
 
 This approach is three fold CV
 
+![[Deep-learning_interview_questions.pdf#page=252&rect=40,209,497,344&color=important|Deep-learning_interview_questions, p.252]]
 
+Both are correct.
 
+The cross-correlation operator compares the similarity of two signals $f$ and $g$ across locations by doing:
+$$
+R_{fg}[n] = \sum_{k=-\infty}^{\infty} f[k]\cdot g[k+n]
+$$
+Autocorrelation is a special case of cross-correlation where the same signal is compared with a shifted version of itself
+$$
+R_{f}[n] = \sum_{k=-\infty}^{\infty} f[k]\cdot f[k+n]
+$$
+The result gives us how similar the same signal is to a shifted version of itself.
 ### Extra Questions
 
 ### Whats Image Segmentation and what Are Its Applications?
@@ -175,3 +280,4 @@ Some important applications of image segmentation are in robot vision and autono
 ### What is Object Detection, and how Does it Differ from Image Classification?
 
 While image segmentation has pixel label resolution in identifying which label those pixels belong to, object detection only focuses on identifying where objects are at a lower resolution, such as placing a box over the detected object.
+
