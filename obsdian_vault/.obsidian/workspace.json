@@ -16,8 +16,8 @@
               "state": {
                 "file": "pdf_files/Deep-learning_interview_questions.pdf",
                 "page": 253,
-                "left": -8,
-                "top": 416,
+                "left": 41,
+                "top": 209,
                 "zoom": 1.27
               },
               "icon": "lucide-file-text",
@@ -115,8 +115,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300,
-    "collapsed": true
+    "width": 300
   },
   "right": {
     "id": "55d1778c20252afa",
