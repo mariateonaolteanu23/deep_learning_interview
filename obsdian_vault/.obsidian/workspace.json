@@ -6,7 +6,7 @@
       {
         "id": "a812f3fbd07ea59f",
         "type": "tabs",
-        "dimension": 59.30107526881721,
+        "dimension": 59.3010752688172,
         "children": [
           {
             "id": "618c275c098ba45c",
@@ -15,10 +15,10 @@
               "type": "pdf",
               "state": {
                 "file": "pdf_files/Deep-learning_interview_questions.pdf",
-                "page": 35,
-                "left": -17,
-                "top": 52,
-                "zoom": 1.16
+                "page": 253,
+                "left": -8,
+                "top": 416,
+                "zoom": 1.27
               },
               "icon": "lucide-file-text",
               "title": "Deep-learning_interview_questions"
@@ -32,7 +32,19 @@
         "dimension": 40.69892473118279,
         "children": [
           {
-            "id": "b708a9d56cf1fa0a",
+            "id": "f61cdded62657d67",
+            "type": "leaf",
+            "state": {
+              "type": "excalidraw",
+              "state": {
+                "file": "Excalidraw/Template.excalidraw.md"
+              },
+              "icon": "excalidraw-icon",
+              "title": "Template.excalidraw"
+            }
+          },
+          {
+            "id": "8e606c25b9a183e7",
             "type": "leaf",
             "state": {
               "type": "markdown",
@@ -44,20 +56,9 @@
               "icon": "lucide-file",
               "title": "Bruno's HW"
             }
-          },
-          {
-            "id": "f61cdded62657d67",
-            "type": "leaf",
-            "state": {
-              "type": "excalidraw",
-              "state": {
-                "file": "Excalidraw/Template.excalidraw.md"
-              },
-              "icon": "excalidraw-icon",
-              "title": "Template.excalidraw"
-            }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "vertical"
@@ -76,7 +77,8 @@
             "state": {
               "type": "file-explorer",
               "state": {
-                "sortOrder": "alphabetical"
+                "sortOrder": "alphabetical",
+                "autoReveal": false
               },
               "icon": "lucide-folder-closed",
               "title": "Files"
@@ -203,12 +205,12 @@
       "obsidian-excalidraw-plugin:Create new drawing": false
     }
   },
-  "active": "b708a9d56cf1fa0a",
+  "active": "8e606c25b9a183e7",
   "lastOpenFiles": [
-    "Excalidraw/Template.excalidraw.md",
-    "interview DL group questions.md",
-    "Bruno's HW.md",
     "pdf_files/Deep-learning_interview_questions.pdf",
+    "Bruno's HW.md",
+    "interview DL group questions.md",
+    "Excalidraw/Template.excalidraw.md",
     "Images-attachments/Pasted image 20250127115652.png",
     "Images-attachments/Bruno's HW 2025-01-27 11.52.18.excalidraw.md",
     "Images-attachments/Pasted Image 20250127115237_749.png",

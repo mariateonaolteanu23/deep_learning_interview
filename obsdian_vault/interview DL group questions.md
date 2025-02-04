@@ -140,3 +140,69 @@ $$
 P(y|x;\beta) = \frac{1}{1+e^{-(-1)}} \approx 0.27 
 $$
 
+![[Deep-learning_interview_questions.pdf#page=33&rect=40,66,509,343|Deep-learning_interview_questions, p.33]]
+![[Deep-learning_interview_questions.pdf#page=34&rect=40,230,496,599&color=yellow|Deep-learning_interview_questions, p.34]]
+
+1. The explanatory variable is the cancer type, because that's the different setting we're testing on, and the response variable is the tumour eradication, because that's what being quantified as response
+2. 
+   $$
+\begin{align}
+\text{Relative risk}:  & & \frac{P(\text{Yes}|\text{Breast})}{P(\text{Yes|Lung})}  &  & \frac{P(\text{No}|\text{Breast})}{P(\text{No|Lung})}   \\
+\text{Odds ratio}:  &  &  \frac{\text{odds}(\text{Breast})}{\text{odds(Lung)}}
+\end{align}
+$$
+Ratio between the probabilities of tumour eradication in each groups
+$$
+\frac{P(\text{Yes}|\text{Breast})}{P(\text{Yes|Lung})} = \frac{\frac{560}{560+260}}{\frac{69}{69+36}} = 1.0392
+$$
+Ratio between the probabilities of the tumour not being eradicated in each group
+$$
+\frac{P(\text{No}|\text{Breast})}{P(\text{No|Lung})} =0.93
+$$
+Odds ratio:
+$$
+\frac{\text{odds}(\text{breast})}{\text{odds}(\text{lung})} = \large{\frac{\frac{\text{success(breast)}}{\text{failure}(\text{breast})}}{\frac{\text{success(lung)}}{\text{failure(lung)}}}} = \frac{2.15}{1.92} = 1.12
+$$
+3. give that both the values of the relative risk and the values of the odds ratio are close to zero there's not a big association
+4. this is computed based on $\log(\text{odds ratio})$ with an error given by $SE\times Z$.
+
+We use the log to make this closer to a gaussian, and to compute this result we first need to find the standard error for the log of the odds ratio.
+
+$$
+\begin{align}
+\log (\text{odds ratio})  & = \log \large{\frac{\frac{\text{success(breast)}}{\text{failure}(\text{breast})}}{\frac{\text{success(lung)}}{\text{failure(lung)}}}} = \log  \frac{s(b)f(l)}{s(l)f(b)}  \\
+  & = \log  s(b) + \log  f(l) - \log s(l) - \log  f(b)
+\end{align}  
+$$
+then we have that the variance of a Bernoulli is independent for each event?
+$$
+\text{Var} \log (\text{odds ratio})= \text{var}\log  s(b) + \text{var}\log  f(l) +\text{var} \log s(l) +\text{var} \log  f(b)
+$$
+then we have that the variance of the 
+$$
+\text{var}(\log x) \approx \frac{1}{x}
+$$
+then the standard error is:
+$$
+SE = \sqrt{ \frac{1}{s(b)}+ \frac{1}{f(l)} + \frac{1}{s(l)} + \frac{1}{f(b)}}
+$$
+And the $Z$ that gives us a confidence interval of 95% confidence (we find in a gaussian) is 1.96.
+
+Then we just have to do:
+$$
+\begin{align}
+\ln \text{odds ratio} \pm Z\times SE  & = \ln (1.12) \pm 1.96 \times 0.22 = \begin{cases}
+0.54 \\
+-0.31
+\end{cases}
+\end{align}
+$$
+and to take the log out of this.
+$$
+(e^{-0.31},e^{0.54}) = (0.73, 1.72)
+$$
+5.  according to this calculations the measurement is inside the 95% confidence interval, so there's no association
+
+Bruno 14
+Gabriel Review
+Maria 15?

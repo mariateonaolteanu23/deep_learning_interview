@@ -98,10 +98,16 @@ where:
 $$
 p(x) = \sum_{y} p(x|y) p(y)
 $$
+![[Deep-learning_interview_questions.pdf#page=63&rect=43,199,502,290&color=important|Deep-learning_interview_questions, p.63]]
+![[Deep-learning_interview_questions.pdf#page=64&rect=43,402,500,607&color=important|Deep-learning_interview_questions, p.64]]
+so, then with if the tests has a 95% chance of being correct whether it's positive or negative, then that means it's wrong only 5% of the time, which would be the same for false positives as for false negatives.
 
+With this in mind the probability of indicating a disease is present would be the probability that the disease is actually present and we diagnose it correctly plus the probability that it is not and we misdiagnose it.
 
-
-
+$$
+P(\text{Disease}) = 0.95\times 0.01 + 0.99 \times 0.05 = 5.9\%
+$$
+so the test will say that the result is positive 5.9% of the time, but most will be false alarms.
 
 ### Chapter 4
 ![[Deep-learning_interview_questions.pdf#page=106&rect=45,75,500,277&color=yellow]]
@@ -142,6 +148,53 @@ The curve is symmetrical
 ![[Deep-learning_interview_questions.pdf#page=109&rect=38,554,496,607&color=important|Deep-learning_interview_questions, p.109]]
 The curve rises to a maximum when the probabilities are equal.
 
+![[Deep-learning_interview_questions.pdf#page=110&rect=44,407,504,478&color=important|Deep-learning_interview_questions, p.110]]
+I'll try to do this from memory because else it's cheating in this one.
+I know there's an entropy term in there. I know there's a log of a division as well.
+$$
+D_{KL}(p(x)\parallel q(x)) = \mathbb{E} \left[ \log \left( \frac{p(x)}{q(x)} \right) \right]
+$$
+but I can't remember what the expectation was over, does it matter? the KL divergence should be the same independently of how I order the arguments.
+
+so let's write out the possible integrals and see what's up.
+
+$$
+\begin{align}
+\text{option 1: }\mathbb{E}_{x \sim p(x)} \to \int p(x) \log \frac{p(x)}{q(x)} dx  & = \int p(x) (\log (p(x)) -\log q(x))dx  \\
+ & = -\mathcal{H}(p(x)) - \mathbb{E}_{p(x)}[\log  q(x)] \\
+\text{option 2: }\mathbb{E}_{x \sim q(x)} \to \int q(x) \log \frac{p(x)}{q(x)} dx  & = \int q(x) (\log (p(x)) -\log q(x))dx  \\
+ & = \mathcal{H}(q(x)) + \mathbb{E}_{q(x)}[\log  p(x)] \\
+\text{option 3: }\mathbb{E}_{x \sim q(x)} \to \int q(x) \log \frac{q(x)}{p(x)} dx  & = \int q(x) (\log q(x) -\log p(x))dx  \\
+ & = -\mathcal{H}(q(x)) - \mathbb{E}_{q(x)}[\log  p(x)] \\
+\text{option 4: }\mathbb{E}_{x \sim p(x)} \to \int p(x) \log \frac{q(x)}{p(x)} dx  & = \int p(x) (\log q(x) -\log p(x))dx  \\
+ & = \mathcal{H}(p(x)) + \mathbb{E}_{q(x)}[\log  p(x)]
+\end{align}
+$$
+So it's either proportional to the entropy or inversely proportional to the entropy, and the entropy a cross-entropy? are both affecting this in the same way.
+
+so let's reason through this, like deepseek would, we would expect the kl divergence to be at a minimum when both distributions are the same, but that's accounted for in the minus sign. 
+
+I'll try one trick here, I know the KL divergence should be 0 if both probabilities are equal, so using that fact, nope, doesn't work, that only means that the entropy and cross-entropy should be the same at that point.
+
+wait, if the KL divergence is akin to a norm, what's it's image, can it be negative? but entropy still can be negative so both solutions still seem to be applicable, I don't see why the distribution I sample form should matter, so I'd say it doesn't.
+
+Turns out direction does matter, here's an example from chatgpt:
+- **Alice (distribution p)**: Says it rains 50% of the time in Paris.
+- **Bob (distribution q)**: Says it rains 10% of the time.
+- **Forward KL (p∥q)** → _"How wrong is Bob compared to Alice?"_  
+    Alice’s perspective: Bob is **wildly underestimating** rain. Penalty is huge because Bob ignores 40% of rainy days Alice expects.
+- **Reverse KL (q∥p)** → _"How wrong is Alice compared to Bob?"_  
+    Bob’s perspective: Alice is **overestimating** rain. Penalty is smaller because Alice’s 50% still "covers" Bob’s 10%.
+
+tuns out that the way to figure out which one was correct is using gibbs inequality, which tells us:
+$$
+\text{Cross-entropy}(p,q) \geq  \mathcal{H}(p)
+$$
+so using this and the fact that the KL divergence cannot be negative, then we realize that the correct form is the one that makes the cross entropy term positive at the end, because else, we would have the KL divergence be either negative or 0.
+$$
+\underbrace{ -\mathbb{E}_{p}(\log  q(x)) }_{ \text{Cross-Entropy} } + \underbrace{ \mathbb{E}_{p}(\log  p(x))}_{ -\mathcal{H}(p) } = \int p(x) \log  (p(x)-q(x))  = \mathbb{E}_{p}\left( \log \frac{p(x)}{q(x)} \right)
+$$
+
 ### Chapter 5
 ![[Deep-learning_interview_questions.pdf#page=144&rect=44,166,490,408&color=yellow]]
 $$
@@ -179,6 +232,13 @@ $$
 \end{align}
 $$
 
+![[Deep-learning_interview_questions.pdf#page=148&rect=45,201,500,294|Deep-learning_interview_questions, p.148]]
+$$
+\begin{align}
+\frac{ \partial z }{ \partial x }   & = 2 \cos(x) \sin(y) \\
+\frac{ \partial z }{ \partial y }  & = 2 \sin(x)\cos(y) 
+\end{align}
+$$
 
 ### Chapter 6
 ![[Pasted image 20250110113206.png]]
@@ -215,6 +275,12 @@ wtf, not even resnet?
 2. True?
 3. False, bootstraping is when we train using various random subsets sampled with replacement
 4. True
+
+![[Deep-learning_interview_questions.pdf#page=210&rect=43,96,500,190|Deep-learning_interview_questions, p.210]]
+
+True, ensemble averaging is a static committee machine
+
+
 ### Chapter 7
 ![[Deep-learning_interview_questions.pdf#page=224&rect=47,276,492,342&color=yellow]]
 
@@ -243,6 +309,13 @@ class ResNetBottom(torch.nn.Module):
         return x
 ```
 
+![[Deep-learning_interview_questions.pdf#page=230&rect=40,75,504,307|Deep-learning_interview_questions, p.230]]
+![[Deep-learning_interview_questions.pdf#page=231&rect=39,274,503,604|Deep-learning_interview_questions, p.231]]
+
+$\hspace{0pt}1$. if we're using cross entropy loss, then our output should be 7 neurons with no activation function and the labels should be class indices from 0 to 6.
+
+if we instead use categorical cross entropy then we instead use one-hot encoded vectors to label the class, and the output layer should have soft-max activation.
+
 ### Chapter 8
 ![[Deep-learning_interview_questions.pdf#page=249&rect=48,104,490,194&color=yellow]]
 
@@ -266,6 +339,24 @@ $$
 R_{f}[n] = \sum_{k=-\infty}^{\infty} f[k]\cdot f[k+n]
 $$
 The result gives us how similar the same signal is to a shifted version of itself.
+
+![[Deep-learning_interview_questions.pdf#page=253&rect=42,151,500,298|Deep-learning_interview_questions, p.253]]
+I can never remember this formula, but it should be easy to figure out, if we have K=3 and a filter of size 1 then we have an output of 3, if the filter has size 2, then we have an output of 2, if the size of K is 4, then we have an output of 3 again.
+
+| K   | F   | output |
+| --- | --- | ------ |
+| 3   | 1   | 3      |
+| 3   | 2   | 2      |
+| 4   | 2   | 3      |
+
+So should it just be K-F+1?
+and then if we include padding, then we just add dimensions to $K$.
+
+assuming a stride of 1, and no dilation, then we would have dimensions:
+$$
+(2+K- F+1)\times(2+K- F+1) = (3K-F) \times(3K-F)
+$$
+
 ### Extra Questions
 
 ### Whats Image Segmentation and what Are Its Applications?
