@@ -32,7 +32,7 @@ nope, in unsupervised learning we try to identify patterns, groups or features i
 ![[Deep-learning_interview_questions.pdf#page=34&rect=40,111,498,225&color=important|Deep-learning_interview_questions, p.34]]
 ![[Deep-learning_interview_questions.pdf#page=35&rect=37,68,497,610&color=important|Deep-learning_interview_questions, p.35]]
 
-for a bernouli distribution we have $P(X=1)= p$, so I assume we can just replace the values here
+for a Bernoulli distribution we have $P(X=1)= p$, so I assume we can just replace the values here
 $$
 p_{i} = \frac{e^{-6+0.05x_{1}+x_{2}}}{1+e^{-6+0.05x_{1}+x_{2}}} =  \frac{0.606530660}{1+0.606530660} = 0.377540669
 $$

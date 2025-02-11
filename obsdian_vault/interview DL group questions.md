@@ -10,8 +10,6 @@ tags:
 date modified: Tuesday, January 21st 2025, 12:55:46 pm
 ---
 
-
-
 # Interview DL Group Questions
 
 ## Chapter 1
@@ -203,6 +201,48 @@ $$
 $$
 5.  according to this calculations the measurement is inside the 95% confidence interval, so there's no association
 
-Bruno 14
-Gabriel Review
-Maria 15?
+![[Deep-learning_interview_questions.pdf#page=34&rect=44,118,497,223&color=yellow|Deep-learning_interview_questions, p.34]]
+
+1.  we can just substitute the probabilities in the sigmoid.
+$$
+p_{i} = \frac{\text{exp}(\beta_{0}+\beta_{1}x_{1}+\beta_{2}x_{2})}{1 + \text{exp}(\beta_{0}+\beta_{1}x_{1}+\beta_{2}x_{2})} = 0.378
+$$
+2.  We can derive this from the sigmoid formula
+$$
+\begin{align}
+p_{i} (1+\exp(-6+0.05x_{1}+x_{2}))  & = \exp(-6+0.05x_{1}+x_{2})  \\
+p_{i}  & = \exp(-6+0.05x_{1}+x_{2}) (1-p_{i}) \\
+\frac{p_{i}}{1-p_{i}}  & = \exp(-6+0.05x_{1}+x_{2}) \\
+\ln  \frac{p_{i}}{1-p_{i}}  &= -6 + 0.05x_{1}+x_{2} \\
+ x_{1}  & = 6+ \ln  \frac{p_{i}}{1-p_{i}} - x_{2} = 5
+\end{align}
+$$
+
+![[Deep-learning_interview_questions.pdf#page=36&rect=45,254,500,587&color=yellow|Deep-learning_interview_questions, p.36]]
+![[Deep-learning_interview_questions.pdf#page=36&rect=45,71,500,249&color=yellow|Deep-learning_interview_questions, p.36]]
+![[Deep-learning_interview_questions.pdf#page=37&rect=43,457,500,604&color=yellow|Deep-learning_interview_questions, p.37]]
+
+1. First we interpret the values we got from the logistic regression.
+	-  $\beta_{0}=-6.36$
+	-  $\beta_{1}= -1.024$
+	-  $\beta_{2}=0.119$
+to solve this we do:
+$$
+\text{logits} = \ln (\text{odds}) \implies \text{odds} = \text{exp}(\beta_{0}+\beta_{1}x_{1}+\beta_{2}x_{2})
+$$
+proof:
+$$
+\begin{align}
+\sigma (\vec{x})  & = \frac{e^{\beta X}}{1 + e^{\beta X}} \\
+\text{odds} & = \frac{\frac{e^{\beta X}}{1 + e^{\beta X}}}{1 - \frac{e^{\beta X}}{1 + e^{\beta X}}} = \frac{e^{\beta X} }{1+e^{\beta X }- e^{\beta X}} = e^{\beta X}
+\end{align}
+$$
+
+2. here we just need to substitute the values in the sigmoid
+
+$$
+p_{i} = \frac{\text{exp}(\beta_{0}+\beta_{1}x_{1}+\beta_{2}x_{2})}{1 + \text{exp}(\beta_{0}+\beta_{1}x_{1}+\beta_{2}x_{2})} = 0.989
+$$
+3. High coffee intake is associated with an increased probability of a second migraine because of the low p-value $0.305$, if we interpret it to mean that a p-value below 0.05 pct means that the relation is significant. and it's associated with an increased probability because of the sign of the coefficient being positive.
+4. No, due to the high p-value (0.3818) we don't have meaningful statistical evidence of this claim.
+
