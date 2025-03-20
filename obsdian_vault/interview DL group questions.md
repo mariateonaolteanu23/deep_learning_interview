@@ -180,6 +180,7 @@ then we have that the variance of the
 $$
 \text{var}(\log x) \approx \frac{1}{x}
 $$
+
 then the standard error is:
 $$
 SE = \sqrt{ \frac{1}{s(b)}+ \frac{1}{f(l)} + \frac{1}{s(l)} + \frac{1}{f(b)}}
@@ -245,4 +246,140 @@ p_{i} = \frac{\text{exp}(\beta_{0}+\beta_{1}x_{1}+\beta_{2}x_{2})}{1 + \text{exp
 $$
 3. High coffee intake is associated with an increased probability of a second migraine because of the low p-value $0.305$, if we interpret it to mean that a p-value below 0.05 pct means that the relation is significant. and it's associated with an increased probability because of the sign of the coefficient being positive.
 4. No, due to the high p-value (0.3818) we don't have meaningful statistical evidence of this claim.
+
+![[Deep-learning_interview_questions.pdf#page=37&rect=41,59,510,453|Deep-learning_interview_questions, p.37]]
+
+a)
+![[Pasted image 20250225133732.png]]
+$$
+p(y|x)=\frac{1}{1+e^{-Ax}} = \frac{1}{1+ \exp(4.8792-0.0258)} = 
+$$
+
+
+b)
+![[Pasted image 20250225133809.png]]
+the equation of the sigmoid was wrong here, it was supposed to be a +
+
+$$
+\begin{align}
+1 + e^{ -(a_{0}+a_{1}x)}  & = \frac{1}{p(y|x)} \\
+e^{ -(a_{0}+a_{1}x)}  & = \frac{1}{p(y|x)}-1 \\
+ a_{0}+a_{1}x & = -\ln \left( \frac{1}{p(y|x)} - 1 \right) \\
+ x & = \frac{- a_{0} -\ln \left( \frac{1}{p(y|x)} - 1 \right)}{a_{1}}  = -\frac{a_{0}}{a_{1}}
+\end{align}
+$$
+3)
+
+$$
+\text{logits} = \ln (\text{odds}) \implies \text{odds} = \text{exp}(\beta_{0}+\beta_{1}x_{1})
+$$
+$$
+\text{odds} = \exp(\text{logits})= \text{exp}(-4.8792+0.0258x) = C
+$$
+$$
+\text{odds ratio} = \frac{\exp(-a+b (x_{1}+1))}{\exp(-a+bx_{1})}= \exp (b) 
+$$
+
+4)
+$$
+\text{Var}(\ln \exp b) \approx \frac{1}{\text{exp } b}
+$$
+supposing that the log of the odds ratio is normally distributed then we have:
+$$
+\text{C.I} = \mu \pm Z \sigma  = \log  \text{odds ratio} \pm Z \sqrt{ \frac{1}{\text{exp } b} } 
+$$
+![[Deep-learning_interview_questions.pdf#page=38&rect=47,91,495,321|Deep-learning_interview_questions, p.38]]
+![[Deep-learning_interview_questions.pdf#page=39&rect=44,248,506,604|Deep-learning_interview_questions, p.39]]
+1)
+
+$$
+\begin{align}
+ \text{odds}(\text{Cannabinoids})  & = \frac{60}{6833} \\
+\text{odds}(\text{Placebo})  & = \frac{130}{6778}
+\end{align}
+$$
+$$
+\text{odds ratio} = \frac{\text{odds}(\text{Cannabinoids})}{\text{odds}(\text{Placebo})}
+$$
+2)
+$$
+\log \text{odds ratio} = \text{log odds (Cannabinoids)} - \text{log odds}(\text{Placebo})
+$$
+3)
+
+$$
+\begin{align}
+\text{Var}(\ln \text{odds ratio}) &  = \text{Var}(\ln (\text{odds} (\text{cannabis}))  - \ln \text{odds}(\text{Placebo})) \\
+ & = \text{Var}(\ln \text{odds (cannabis)} ) - \text{Var}(\ln \text{odds}(\text{Placebo})) \\
+ & =\frac{1}{\text{odds}(\text{cannabis})} - \frac{1}{\text{odds}(\text{placebo})} = \frac{1}{60/6833}-\frac{1}{130/6778}
+\end{align}
+$$
+but that's different form (all positive because variance cannot be negative):
+$$
+\frac{1}{60}+\frac{1}{130} + \frac{1}{6833} + \frac{1}{6778}
+$$
+
+$$
+\begin{align}
+\text{Var} (x)\approx \frac{1}{x} \implies Var(\log \text{odds ratio})  & = \frac{1}{\text{odds(Cannabinoids)}} - \frac{1}{\text{odds(Placebo)}} \\
+ & = \frac{1}{60/6833} - \frac{1}{130/6778}
+\end{align}
+$$
+MARIA's point: this is not the same as you would get if you wrote it in terms of the failures and successes, so the approximation may not be valid.
+$$
+\frac{1}{60}-\frac{1}{6833} 
+$$
+
+$$
+\text{Var}(X+Y) = \text{Var}(X)+\text{Var}(Y)
+$$
+================== To solve =================
+
+![[Deep-learning_interview_questions.pdf#page=39&rect=39,65,511,222|Deep-learning_interview_questions, p.39]]
+![[interview DL group questions 2025-03-14 11.46.06.excalidraw]]
+
+The derivative of the logarithm odds ratio (the logit function) is the derivative of entropy.
+$$
+\frac{d}{dp}\mathcal{H}(p) = -\log \left( \frac{p}{1-p} \right)
+$$
+![[Deep-learning_interview_questions.pdf#page=40&rect=48,62,499,560|Deep-learning_interview_questions, p.40]]
+
+$\hspace{0pt}1$. this is the multiplication (inner product) of the parameters times the independent variables $x$, so what we have here is just:
+$$
+z = \theta x_{1} + 0 x_{2} 
+$$
+$\hspace{0pt}2$. this is just to classify the final prediction, if it's over 0.5 then we return 1 else $\hspace{0pt}0$.
+
+![[Deep-learning_interview_questions.pdf#page=41&rect=46,512,497,606|Deep-learning_interview_questions, p.41]]
+$\hspace{0pt}3$. theta is the parameter vector
+
+$\hspace{0pt}4$. I believe it works
+
+![[Deep-learning_interview_questions.pdf#page=41&rect=40,205,507,504|Deep-learning_interview_questions, p.41]]
+
+$$
+(3,5)\cdot (5,7) = (3,7)
+$$
+
+![[Deep-learning_interview_questions.pdf#page=42&rect=48,304,496,594|Deep-learning_interview_questions, p.42]]
+$\hspace{0pt}1$. Numerically stable softmax
+$$
+\frac{\exp(x - x_{\max})}{\sum \exp(x-x_{\max})}
+$$
+$\hspace{0pt}2$. Sigmoid
+
+$\hspace{0pt}3$. Derivative of the sigmoid
+
+![[Deep-learning_interview_questions.pdf#page=43&rect=46,346,501,594|Deep-learning_interview_questions, p.43]]
+$$
+\text{Cross Entropy} (y, \hat{y}) =-\sum_{i} y \log (\hat{y}) = -y \log (\hat{y}) - (1-y) \log (1-\hat{y})
+$$
+![[Deep-learning_interview_questions.pdf#page=44&rect=45,234,500,594|Deep-learning_interview_questions, p.44]]
+
+$\hspace{0pt}1$. sigmoid
+
+$\hspace{0pt}2$. it's the maximum value of a negative exponent for which you still get a float32 value and not a 0.0
+
+$\hspace{0pt}3$. we would choose the third one because maria said so
+
 

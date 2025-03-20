@@ -109,6 +109,29 @@ P(\text{Disease}) = 0.95\times 0.01 + 0.99 \times 0.05 = 5.9\%
 $$
 so the test will say that the result is positive 5.9% of the time, but most will be false alarms.
 
+![[Deep-learning_interview_questions.pdf#page=64&rect=41,62,501,136&color=important|Deep-learning_interview_questions, p.64]]
+![[Deep-learning_interview_questions.pdf#page=65&rect=44,330,495,603&color=important|Deep-learning_interview_questions, p.65]]
+
+because transitions have the same probability of being correct we have:
+$$
+P(s_{0\to 1}) = P(s_{1\to 0}) = p
+$$
+and given that state-1 options double, transtions from $\hspace{0pt}0$ to $\hspace{0pt}1$ should be twice as common:
+$$
+P(s_{0\to{1}}) = 2P(s_{1\to{0}})
+$$
+and what we have is the probability of the AI being correct:
+$$
+\begin{align}
+P(AI=1| s_{0 \to 1})  & = 0.85 \\
+P(AI=1| s_{1 \to 0})  & = 0.85 \\
+\end{align}
+$$
+for bayes, we'd like to know the prior, which we have as a ratio of the probability of transitions $P(s_{0\to{1}}) = 2P(s_{1\to{0}})$, if we are in state one we want to solve:
+$$
+P(s_{1}|AI=1) = \frac{P(AI=1|s_{1})P(s_{1})}{P(AI=1)}
+$$
+got stuck here...
 ### Chapter 4
 ![[Deep-learning_interview_questions.pdf#page=106&rect=45,75,500,277&color=yellow]]
 For an event that's certain to happen we have no entropy, because the entropy measures the uncertainty present
@@ -195,6 +218,19 @@ $$
 \underbrace{ -\mathbb{E}_{p}(\log  q(x)) }_{ \text{Cross-Entropy} } + \underbrace{ \mathbb{E}_{p}(\log  p(x))}_{ -\mathcal{H}(p) } = \int p(x) \log  (p(x)-q(x))  = \mathbb{E}_{p}\left( \log \frac{p(x)}{q(x)} \right)
 $$
 
+![[Deep-learning_interview_questions.pdf#page=110&rect=43,53,509,349&color=important|Deep-learning_interview_questions, p.110]]
+![[Deep-learning_interview_questions.pdf#page=111&rect=42,523,499,599&color=important|Deep-learning_interview_questions, p.111]]
+
+1.  **True**, the KL divergence is not symmetric, because if we frame as a measure of how surprised we would be by assuming a coin's behavior while flipping another, and let's say coin $P$ has 100% chance of being heads, while coin $Q$ has a 50% chance of being heads.
+	1. then $D_{KL}(P\parallel Q)$ assumes the real coin is $P$ and we're predicting the outcome based on $Q$, so then our estimate undershoots the chance of heads, so we incur some penalty for that 50% of the time we were wrong.
+	2. $D_{KL}(Q\parallel P)$ assumes the true coin is $Q$ and we're predicting the outcome based on $P$, then $Q$ sometimes gives us tails, but $P$ does not allow for that, so the surprise we get is much bigger, and the penalty we incur becomes infinite.
+2. **False**: the triangle inequality suggests $d(p,q)\leq d(p,r)+d(r,q)$, because by taking a detour we might soften the "surprise" a lot more than if we just jumped from $p$ to $q$.
+3. **True**: is not a distance metric because it's neither symmetric nor it complies with the triangle inequality.
+4. **True**
+5. **True**. it should have the same unit as entropy, because we can express it as the difference between the cross entropy and the entropy.
+6. **True**
+7. **False**: high information gain means that the split does a good job separating the data, because the resulting nodes are much more homogeneous.
+
 ### Chapter 5
 ![[Deep-learning_interview_questions.pdf#page=144&rect=44,166,490,408&color=yellow]]
 $$
@@ -226,9 +262,9 @@ $$
 
 $$
 \begin{align}
-1. &  \lim_{ x \to 3 } \frac{e^{x^{3}}-e^{27}}{3x-9} \to \text{l'hopital} \to \lim_{ x \to 3 } \frac{3x^{2} e^{x^{3}}}{3} = 9e^{27} \\
-2. &  \lim_{ x \to 0 } \frac{e^{x^{2}}-x-1}{3\cos x -x-3} \implies \lim_{ x \to 0 } \frac{2xe^{x^{2}}-1}{-3 \sin x - 1}=1 \\
-3.  & \lim_{ x \to \infty } \frac{x-\ln x}{\sqrt[100]{x} +4} \implies \lim_{ x \to \infty } \frac{1-1/x}{\frac{1}{100}x^{-99/100}} = \frac{x - 1}{x} 100 x^{99/100} = \infty
+8. &  \lim_{ x \to 3 } \frac{e^{x^{3}}-e^{27}}{3x-9} \to \text{l'hopital} \to \lim_{ x \to 3 } \frac{3x^{2} e^{x^{3}}}{3} = 9e^{27} \\
+9. &  \lim_{ x \to 0 } \frac{e^{x^{2}}-x-1}{3\cos x -x-3} \implies \lim_{ x \to 0 } \frac{2xe^{x^{2}}-1}{-3 \sin x - 1}=1 \\
+10.  & \lim_{ x \to \infty } \frac{x-\ln x}{\sqrt[100]{x} +4} \implies \lim_{ x \to \infty } \frac{1-1/x}{\frac{1}{100}x^{-99/100}} = \frac{x - 1}{x} 100 x^{99/100} = \infty
 \end{align}
 $$
 
@@ -239,6 +275,19 @@ $$
 \frac{ \partial z }{ \partial y }  & = 2 \sin(x)\cos(y) 
 \end{align}
 $$
+![[Deep-learning_interview_questions.pdf#page=149&rect=40,432,496,546&color=important|Deep-learning_interview_questions, p.149]]
+
+$$
+\frac{d}{dx} f(x) = 6x-1
+$$
+this derivative is a linear function on $x$ and it's increasing, which means the rate at which $x$ will increase will be heightened along with the value of $x$, and we might find an equilibrium point at x=1/6.
+
+if we derive once again:
+
+$$
+\frac{d^{2}}{dt^{2}} f(x) = 6 
+$$
+this tells us that the function is upwards concave.
 
 ### Chapter 6
 ![[Pasted image 20250110113206.png]]
@@ -253,33 +302,35 @@ I'm guessing this is just averaging the outputs from the different models, so th
 ![[Pasted image 20250120152619.png]]
 wtf, not even resnet?
 
-1. 19
-2. 16 convolutional and 3 dense ones
-3. 224x224
-4. 64
-5. substracted
-6. small 3x3
-7. 1
-8. 5 Conv layers with 3x3 kernels and stride of 1 padding 1 - 5 pooling layers with stride of 2
-9. ReLU
-10. dense
-11. 4096 higher level features each
-12. 1000 features
-13. softmax
-14. dropout is not being used
+11. 19
+12. 16 convolutional and 3 dense ones
+13. 224x224
+14. 64
+15. substracted
+16. small 3x3
+17. 1
+18. 5 Conv layers with 3x3 kernels and stride of 1 padding 1 - 5 pooling layers with stride of 2
+19. ReLU
+20. dense
+21. 4096 higher level features each
+22. 1000 features
+23. softmax
+24. dropout is not being used
 
 ![[Deep-learning_interview_questions.pdf#page=208&rect=42,62,498,105&color=important|Deep-learning_interview_questions, p.208]]
 ![[Deep-learning_interview_questions.pdf#page=209&rect=54,442,506,601&color=important|Deep-learning_interview_questions, p.209]]
 
-1. True
-2. True?
-3. False, bootstraping is when we train using various random subsets sampled with replacement
-4. True
+25. True
+26. True?
+27. False, bootstraping is when we train using various random subsets sampled with replacement
+28. True
 
 ![[Deep-learning_interview_questions.pdf#page=210&rect=43,96,500,190|Deep-learning_interview_questions, p.210]]
 
 True, ensemble averaging is a static committee machine
 
+![[Deep-learning_interview_questions.pdf#page=211&rect=40,252,500,330&color=important|Deep-learning_interview_questions, p.211]]
+True, because it should lead to a bias reduction.
 
 ### Chapter 7
 ![[Deep-learning_interview_questions.pdf#page=224&rect=47,276,492,342&color=yellow]]
@@ -315,6 +366,8 @@ class ResNetBottom(torch.nn.Module):
 $\hspace{0pt}1$. if we're using cross entropy loss, then our output should be 7 neurons with no activation function and the labels should be class indices from 0 to 6.
 
 if we instead use categorical cross entropy then we instead use one-hot encoded vectors to label the class, and the output layer should have soft-max activation.
+
+![[Deep-learning_interview_questions.pdf#page=231&rect=41,81,502,151&color=important|Deep-learning_interview_questions, p.231]]
 
 ### Chapter 8
 ![[Deep-learning_interview_questions.pdf#page=249&rect=48,104,490,194&color=yellow]]
