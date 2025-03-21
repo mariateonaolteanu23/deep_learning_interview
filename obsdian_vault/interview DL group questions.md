@@ -382,4 +382,41 @@ $\hspace{0pt}2$. it's the maximum value of a negative exponent for which you sti
 
 $\hspace{0pt}3$. we would choose the third one because maria said so
 
+## Chapter 3
 
+![[Deep-learning_interview_questions.pdf#page=59&rect=41,55,501,120|Deep-learning_interview_questions, p.59]]
+A trial where you have a binary result with probability $p$.
+
+![[Deep-learning_interview_questions.pdf#page=60&rect=40,518,494,597|Deep-learning_interview_questions, p.60]]
+The binomial random variable $X$ is the number of $k$ desired outcomes of repeated ($n$ times)  Bernoulli trials.
+
+![[Deep-learning_interview_questions.pdf#page=60&rect=40,432,497,514|Deep-learning_interview_questions, p.60]]
+Here they're just sampling a random variable from a binomial distribution with parameters $n$ and $p$.
+
+![[Deep-learning_interview_questions.pdf#page=60&rect=40,348,499,432|Deep-learning_interview_questions, p.60]]
+$$
+P(X=k) = 
+\begin{pmatrix}
+n \\
+k
+\end{pmatrix} p^{k} (1-p)^{n-k}
+$$
+![[Deep-learning_interview_questions.pdf#page=60&rect=40,205,522,349|Deep-learning_interview_questions, p.60]]
+1. it's the weighted average of a probability function
+$$
+\mathbb{E}_{x\sim p}[q] =\int p(x) q(x) dx
+$$
+
+2. It's a measure of how much the values are spread out around the expected value.
+$$
+\text{Var}(x) = \mathbb{E}[(x - \mathbb{E}[x])^{2}]  = \mathbb{E}[X^{2}] - \mathbb{E}[X]^{2}
+$$
+
+$\hspace{0pt}3$. 
+
+$$
+\begin{align}
+\mathbb{E}_{x\sim \text{Binomial}}(x) & =  \sum_{x \in \{  1, 0 \}}     \frac{n!}{x! (n-x)!} p^{x} (1-p)^{n-x} x  \\
+ & = \frac{n!}{(n-1)!} p (1-p)^{n-1} + 0
+\end{align}
+$$

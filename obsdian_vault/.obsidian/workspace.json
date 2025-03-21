@@ -6,7 +6,7 @@
       {
         "id": "208b329a7f41d4d8",
         "type": "tabs",
-        "dimension": 56.81415929203539,
+        "dimension": 55.31286894923259,
         "children": [
           {
             "id": "3cb96979ab85c493",
@@ -15,10 +15,10 @@
               "type": "pdf",
               "state": {
                 "file": "pdf_files/Deep-learning_interview_questions.pdf",
-                "page": 42,
-                "left": -14,
-                "top": 207,
-                "zoom": 1.0708333333333335
+                "page": 60,
+                "left": 7,
+                "top": 498,
+                "zoom": 1.2291666666666667
               },
               "icon": "lucide-file-text",
               "title": "Deep-learning_interview_questions"
@@ -29,7 +29,7 @@
       {
         "id": "e04ac1b4313c8e11",
         "type": "tabs",
-        "dimension": 43.1858407079646,
+        "dimension": 44.68713105076741,
         "children": [
           {
             "id": "8e606c25b9a183e7",
@@ -214,13 +214,13 @@
       "obsidian-excalidraw-plugin:Create new drawing": false
     }
   },
-  "active": "3cb96979ab85c493",
+  "active": "8e606c25b9a183e7",
   "lastOpenFiles": [
+    "Excalidraw/Drawing 2025-02-25 14.20.59.excalidraw.md",
     "interview DL group questions.md",
     "pdf_files/Deep-learning_interview_questions.pdf",
     "Images-attachments/interview DL group questions 2025-03-14 11.46.06.excalidraw.md",
     "Bruno's HW.md",
-    "Excalidraw/Drawing 2025-02-25 14.20.59.excalidraw.md",
     "Images-attachments/Pasted image 20250225133809.png",
     "Images-attachments/Pasted image 20250225133732.png",
     "Excalidraw/Template.excalidraw.md",
